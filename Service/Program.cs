@@ -1,11 +1,11 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Enrichers.AspnetcoreHttpcontext;
+using System;
+using System.Diagnostics;
+using System.IO;
 
 namespace Service
 {
@@ -41,6 +41,7 @@ namespace Service
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+            .UseSetting("detailedErrors", "true")
                 .UseStartup<Startup>()
                 .UseSerilog((provider, context, loggerConfiguration) =>
                 {
@@ -50,6 +51,7 @@ namespace Service
                         .WriteTo.Console(
                             outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj} {NewLine}{HttpContext}");
                 })
+                .CaptureStartupErrors(true)
                 .Build();
 
     }

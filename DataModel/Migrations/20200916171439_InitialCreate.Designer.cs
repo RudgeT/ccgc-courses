@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataModel.Migrations
 {
-    [DbContext(typeof(ExampleDbContext))]
+    [DbContext(typeof(CollegeDbContext))]
     [Migration("20200916171439_InitialCreate")]
     partial class InitialCreate
     {
@@ -21,261 +21,99 @@ namespace DataModel.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("CCG.AspNetCore.Data.Audit.AuditLog", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+            modelBuilder.Entity("DataModel.Course", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("AuditData");
+                b.Property<int>("Active")
+                    .HasColumnType("int");
 
-                    b.Property<DateTime>("AuditDate");
+                b.Property<string>("Code")
+                    .HasColumnType("nvarchar(50)")
+                    .HasMaxLength(50);
 
-                    b.Property<string>("AuditUser");
+                b.Property<string>("TitleEng")
+                    .HasColumnType("nvarchar(1000)")
+                    .HasMaxLength(1000);
 
-                    b.HasKey("Id");
+                b.Property<string>("TitleFre")
+                    .HasColumnType("nvarchar(1000)")
+                    .HasMaxLength(1000);
 
-                    b.ToTable("AuditLogs");
-                });
+                b.Property<string>("DescEng")
+                    .HasColumnType("nvarchar(4000)")
+                    .HasMaxLength(4000);
 
-            modelBuilder.Entity("CCG.AspNetCore.Data.Auth.Model.Privilege", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+                b.Property<string>("DescFre")
+                    .HasColumnType("nvarchar(4000)")
+                    .HasMaxLength(4000);
 
-                    b.Property<string>("Code");
+                b.Property<string>("LangEng")
+                    .HasColumnType("nvarchar(4000)")
+                    .HasMaxLength(100);
 
-                    b.Property<string>("DescEng");
+                b.Property<string>("LangFre")
+                    .HasColumnType("nvarchar(4000)")
+                    .HasMaxLength(100);
 
-                    b.Property<string>("DescFre");
+                b.Property<string>("Hours")
+                    .HasColumnType("nvarchar(30)")
+                    .HasMaxLength(30);
 
-                    b.Property<bool>("IsActive");
+                b.HasKey("Id");
 
-                    b.Property<short>("SortOrder");
+                b.ToTable("Courses");
+            });
 
-                    b.HasKey("Id");
+            modelBuilder.Entity("DataModel.Department", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.HasIndex("Code");
+                b.Property<int>("Active")
+                    .HasColumnType("int");
 
-                    b.ToTable("Privileges");
+                b.Property<string>("NameEng")
+                    .HasColumnType("nvarchar(1000)")
+                    .HasMaxLength(1000);
 
-                    b.HasData(
-                        new { Id = new Guid("afe32f00-b6a6-4caa-b452-30e1240e34c0"), Code = "Auth_User_View", DescEng = "View users", DescFre = "Afficher les utilisateurs", IsActive = true, SortOrder = (short)0 },
-                        new { Id = new Guid("3a76dde2-b837-450c-a6b3-eda358720bbd"), Code = "Auth_User_Manage", DescEng = "Manage users", DescFre = "Gérer les utilisateurs", IsActive = true, SortOrder = (short)0 },
-                        new { Id = new Guid("c3e4261f-66d9-4a22-b589-3cdd5c17c12d"), Code = "Auth_Assign_View", DescEng = "View role privileges", DescFre = "Afficher les privilèges de rôle", IsActive = true, SortOrder = (short)0 },
-                        new { Id = new Guid("b78ecf44-75b6-4058-b9fe-c4ae4a5b1baa"), Code = "Auth_Assign_Manage", DescEng = "Manage role privileges", DescFre = "Gérer les privilèges de rôles", IsActive = true, SortOrder = (short)0 },
-                        new { Id = new Guid("664feb76-8bcf-445a-a70d-8a31ea9c9954"), Code = "Auth_Role_View", DescEng = "View roles", DescFre = "Afficher les rôles", IsActive = true, SortOrder = (short)0 },
-                        new { Id = new Guid("cfea2a8f-40fd-4b8e-b7c2-062cf42745c6"), Code = "Auth_Role_Manage", DescEng = "Manage roles", DescFre = "Gérer les rôles", IsActive = true, SortOrder = (short)0 },
-                        new { Id = new Guid("3bf1919a-c5d5-46aa-ba99-70dd1f73d8d4"), Code = "Auth_Privilege_View", DescEng = "View Privileges", DescFre = "Afficher les privilèges", IsActive = true, SortOrder = (short)0 },
-                        new { Id = new Guid("6d823333-1c28-4ba5-8544-e0004d1bd272"), Code = "Code_View", DescEng = "View Code Tables", DescFre = "Afficher les tableaux de codes", IsActive = true, SortOrder = (short)0 }
-                    );
-                });
+                b.Property<string>("NameFre")
+                    .HasColumnType("nvarchar(1000)")
+                    .HasMaxLength(1000);
 
-            modelBuilder.Entity("CCG.AspNetCore.Data.Auth.Model.SystemRole", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
+                b.HasKey("Id");
 
-                    b.Property<string>("Code");
+                b.ToTable("Departments");
+            });
 
-                    b.Property<string>("DescEng");
+            modelBuilder.Entity("DataModel.Discipline", b =>
+            {
+                b.Property<int>("Id")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnType("int")
+                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DescFre");
+                b.Property<int>("Active")
+                    .HasColumnType("int");
 
-                    b.Property<bool>("IsActive");
+                b.Property<string>("NameEng")
+                    .HasColumnType("nvarchar(1000)")
+                    .HasMaxLength(1000);
 
-                    b.Property<short>("SortOrder");
+                b.Property<string>("NameFre")
+                    .HasColumnType("nvarchar(1000)")
+                    .HasMaxLength(1000);
 
-                    b.HasKey("Id");
+                b.HasKey("Id");
 
-                    b.HasIndex("Code");
+                b.ToTable("Disciplines");
+            });
 
-                    b.ToTable("SystemRoles");
-
-                    b.HasData(
-                        new { Id = new Guid("3d9aa27f-9ee9-4246-97ab-0ad6e696ffc5"), Code = "Guest", DescEng = "Guest", DescFre = "Invité", IsActive = true, SortOrder = (short)0 },
-                        new { Id = new Guid("3bdce629-ffa6-4973-9be1-e7c3ba6d7cf4"), Code = "User", DescEng = "User", DescFre = "Utilisateur", IsActive = true, SortOrder = (short)0 },
-                        new { Id = new Guid("4717fc67-e3cb-4d1c-b3d1-72ec3b5ad655"), Code = "Admin", DescEng = "Administrator", DescFre = "Administrateur", IsActive = true, SortOrder = (short)0 }
-                    );
-                });
-
-            modelBuilder.Entity("CCG.AspNetCore.Data.Auth.Model.SystemRolePrivilege", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid>("PrivilegeId");
-
-                    b.Property<Guid>("SystemRoleId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PrivilegeId");
-
-                    b.HasIndex("SystemRoleId", "PrivilegeId");
-
-                    b.ToTable("SystemRolePrivileges");
-
-                    b.HasData(
-                        new { Id = new Guid("3ebf58b3-578e-4fc6-98ec-b5e7ff907d33"), PrivilegeId = new Guid("afe32f00-b6a6-4caa-b452-30e1240e34c0"), SystemRoleId = new Guid("3d9aa27f-9ee9-4246-97ab-0ad6e696ffc5") },
-                        new { Id = new Guid("2be4f8e5-1845-4b9a-be05-f67a40300a3f"), PrivilegeId = new Guid("3a76dde2-b837-450c-a6b3-eda358720bbd"), SystemRoleId = new Guid("3d9aa27f-9ee9-4246-97ab-0ad6e696ffc5") },
-                        new { Id = new Guid("36f15ab8-12d3-4728-946f-e06bd70ea635"), PrivilegeId = new Guid("c3e4261f-66d9-4a22-b589-3cdd5c17c12d"), SystemRoleId = new Guid("3d9aa27f-9ee9-4246-97ab-0ad6e696ffc5") },
-                        new { Id = new Guid("17ddaa13-4c28-422a-b32c-2b599641a876"), PrivilegeId = new Guid("b78ecf44-75b6-4058-b9fe-c4ae4a5b1baa"), SystemRoleId = new Guid("3d9aa27f-9ee9-4246-97ab-0ad6e696ffc5") },
-                        new { Id = new Guid("6875db1c-d2c7-4d69-ad99-b21c6a996ee0"), PrivilegeId = new Guid("664feb76-8bcf-445a-a70d-8a31ea9c9954"), SystemRoleId = new Guid("3d9aa27f-9ee9-4246-97ab-0ad6e696ffc5") },
-                        new { Id = new Guid("6cd0ae01-5e08-456e-98d7-fa694752ab7a"), PrivilegeId = new Guid("cfea2a8f-40fd-4b8e-b7c2-062cf42745c6"), SystemRoleId = new Guid("3d9aa27f-9ee9-4246-97ab-0ad6e696ffc5") },
-                        new { Id = new Guid("daee098c-58e8-4473-b363-6e547319d40f"), PrivilegeId = new Guid("3bf1919a-c5d5-46aa-ba99-70dd1f73d8d4"), SystemRoleId = new Guid("3d9aa27f-9ee9-4246-97ab-0ad6e696ffc5") }
-                    );
-                });
-
-            modelBuilder.Entity("CCG.AspNetCore.Data.Auth.Model.User", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("IsActive");
-
-                    b.Property<DateTime?>("LastLoginDate");
-
-                    b.Property<string>("NameIdentifier")
-                        .HasMaxLength(50);
-
-                    b.Property<Guid>("SystemRoleId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NameIdentifier")
-                        .IsUnique()
-                        .HasFilter("[NameIdentifier] IS NOT NULL");
-
-                    b.HasIndex("SystemRoleId");
-
-                    b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("CCG.AspNetCore.Data.Auth.Model.UserClaim", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.Property<Guid>("UserId");
-
-                    b.Property<string>("Value")
-                        .HasMaxLength(250);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserClaims");
-                });
-
-            modelBuilder.Entity("DataModel.Classification", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Code")
-                        .IsRequired();
-
-                    b.Property<string>("DescEng")
-                        .HasMaxLength(255)
-                        .IsUnicode(false);
-
-                    b.Property<string>("DescFre")
-                        .HasMaxLength(255)
-                        .IsUnicode(false);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Classifications");
-                });
-
-            modelBuilder.Entity("DataModel.CodeTables.StatusCode", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Code");
-
-                    b.Property<string>("DescEng");
-
-                    b.Property<string>("DescFre");
-
-                    b.Property<bool>("IsActive");
-
-                    b.Property<short>("SortOrder")
-                        .ValueGeneratedOnAdd()
-                        .HasDefaultValue((short)0);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Code");
-
-                    b.ToTable("Statuses");
-
-                    b.HasData(
-                        new { Id = new Guid("fd988731-d699-40d1-a860-5619f331727e"), Code = "A", DescEng = "Active", DescFre = "Actifs", IsActive = true, SortOrder = (short)0 },
-                        new { Id = new Guid("904d49f7-227e-4650-aba0-47b25d54c41b"), Code = "O", DescEng = "Ongoing monitoring/assessment required to determine way forward", DescFre = "Un suivi et une évaluation continus sont nécessaires pour déterminer la voie à suivre.", IsActive = true, SortOrder = (short)0 },
-                        new { Id = new Guid("f75ef970-7785-446f-a125-b52c0f71ef85"), Code = "TA", DescEng = "Technical assessment/remediation in progress", DescFre = "Évaluation technique/assainissement en cours", IsActive = true, SortOrder = (short)0 },
-                        new { Id = new Guid("b91082f4-21d0-4640-82e4-143ab566ec3f"), Code = "OTH", DescEng = "Other", DescFre = "Autre", IsActive = true, SortOrder = (short)0 }
-                    );
-                });
-
-            modelBuilder.Entity("DataModel.EventLog", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Exception");
-
-                    b.Property<string>("Level")
-                        .HasMaxLength(128);
-
-                    b.Property<string>("LogEvent");
-
-                    b.Property<string>("Message");
-
-                    b.Property<string>("MessageTemplate");
-
-                    b.Property<DateTime>("TimeStamp");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("EventLogs");
-                });
-
-            modelBuilder.Entity("CCG.AspNetCore.Data.Auth.Model.SystemRolePrivilege", b =>
-                {
-                    b.HasOne("CCG.AspNetCore.Data.Auth.Model.Privilege", "Privilege")
-                        .WithMany("SystemRolePrivileges")
-                        .HasForeignKey("PrivilegeId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("CCG.AspNetCore.Data.Auth.Model.SystemRole", "SystemRole")
-                        .WithMany("SystemRolePrivileges")
-                        .HasForeignKey("SystemRoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("CCG.AspNetCore.Data.Auth.Model.User", b =>
-                {
-                    b.HasOne("CCG.AspNetCore.Data.Auth.Model.SystemRole", "SystemRole")
-                        .WithMany("Users")
-                        .HasForeignKey("SystemRoleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("CCG.AspNetCore.Data.Auth.Model.UserClaim", b =>
-                {
-                    b.HasOne("CCG.AspNetCore.Data.Auth.Model.User", "User")
-                        .WithMany("UserClaims")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
 #pragma warning restore 612, 618
         }
     }

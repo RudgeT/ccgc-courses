@@ -12,19 +12,24 @@ namespace Web.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        private readonly ClassificationService _classificationService;
-        
-        public Classification[] Classifications;
+        private readonly CourseService _courseService;
+        private readonly DepartmentService _departmentService;
 
-        public IndexModel(ILogger<IndexModel> logger, ClassificationService classificationService)
+
+        public Course[] Courses { get; set; }
+        public Department[] Departments { get; set; }
+
+        public IndexModel(ILogger<IndexModel> logger, CourseService courseService, DepartmentService departmentService)
         {
             _logger = logger;
-            _classificationService = classificationService;
+            _courseService = courseService;
+            _departmentService = departmentService;
         }
 
         public async Task OnGet()
         {
-            Classifications = await _classificationService.GetClassifications();
+            Courses = await _courseService.GetCourses();
+            Departments = await _departmentService.GetDepartments();
         }
     }
 }

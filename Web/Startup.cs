@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization.Routing;
 using Web.Helpers;
 using System.Linq;
+using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
+using Microsoft.AspNetCore.Routing;
 
 namespace Web
 {
@@ -35,6 +37,8 @@ namespace Web
         {
             services.AddControllers();
             services.AddLocalization(opts => { opts.ResourcesPath = "Resources"; });
+
+            services.Configure<RouteOptions>(options => options.ConstraintMap.Add("french", typeof(FrenchRouteConstraint)));
 
             services
                 .AddRazorPages()
@@ -82,9 +86,6 @@ namespace Web
             }
 
             app.UseHttpsRedirection();
-
-
-
 
             app.UseStaticFiles();
 

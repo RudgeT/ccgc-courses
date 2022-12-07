@@ -10,6 +10,7 @@ using CCG.AspNetCore.Web;
 using CCG.AspNetCore.Web.Authorization;
 using Core;
 using DataModel;
+using DataModel.SeedData;
 using FluentValidation;
 using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -29,17 +30,13 @@ namespace Service
     public class Startup
     {
         private readonly Container _container = new Container();
-        private readonly EmailConfiguration _emailConfig;
-        private readonly ApplicationConfiguration _appConfig;
-        private readonly ExampleIdentityConfiguration _identityConfig;
+        private readonly CourseApplicationConfiguration _appConfig;
         private readonly ConfigurationBootstrapper _bootstrapper;
 
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            _emailConfig = Configuration.GetSection("Email").Get<EmailConfiguration>();
-            _appConfig = Configuration.GetSection("Application").Get<ApplicationConfiguration>();
-            _identityConfig = Configuration.GetSection("IdentityProvider").Get<ExampleIdentityConfiguration>();
+            _appConfig = Configuration.GetSection("Application").Get<CourseApplicationConfiguration>();
             _bootstrapper = new ConfigurationBootstrapper(_container);
         }
 
@@ -62,90 +59,14 @@ namespace Service
                     options.ClientErrorMapping[StatusCodes.Status404NotFound].Link = "https://httpstatuses.com/404";
                 });
 
-            services
-                .AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.Authority = _identityConfig.Authority;
-                    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-                    {
-                        ValidateIssuer = true,
-                        ValidAudiences = _identityConfig.ValidAudiences
-                    };
-                    options.RequireHttpsMetadata = false;
-                    options.Events = new JwtBearerEvents
-                    {
-                        OnTokenValidated = async context =>
-                        {
-                            Serilog.Log.Information("sign in");
-
-                            if (!(context.Principal.Identity is ClaimsIdentity identity))
-                                throw new ArgumentNullException(nameof(context.Principal.Identity));
-
-                            var commandSender = _container.GetInstance<ICommandSender>();
-
-                            if (identity.HasClaim(e => e.Type == "aud" && e.Value == _identityConfig.ClientAudience))
-                            {
-
-                                // get user data from claims
-                                var command = new AddNewUserAccountCommand()
-                                {
-                                    NameIdentifier = identity.FindFirst(ClaimTypes.NameIdentifier).Value,
-                                    GivenName = identity.FindFirst(ClaimTypes.GivenName).Value,
-                                    Surname = identity.FindFirst(ClaimTypes.Surname).Value,
-                                    Email = identity.FindFirst(ClaimTypes.Email).Value,
-                                };
-
-                                // when valid, create user
-                                if ((await commandSender.ValidateAsync(command)).IsValid)
-                                {
-                                    await commandSender.SendAsync(command);
-                                }
-                                Serilog.Log.Information($"signin for {_identityConfig.ClientAudience}");
-                            }
-
-                            if (identity.HasClaim(e => e.Type == "aud" && e.Value == _identityConfig.GisAudience))
-                            {
-                                Serilog.Log.Information($"signin for {_identityConfig.GisAudience}");
-                            }
-                        }
-                    };
-                });
-
-            services.AddCors(options =>
-            {
-                options.AddPolicy("CorsPolicy",
-                    builder => builder
-                        .WithOrigins(_identityConfig.Client)
-                        .AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .AllowCredentials());
-            });
-
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
 
-                options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme()
-                {
-                    Type = SecuritySchemeType.OAuth2,
-
-                    Flows = new OpenApiOAuthFlows
-                    {
-                        Implicit = new OpenApiOAuthFlow
-                        {
-                            AuthorizationUrl = new Uri($"{_identityConfig.Authority}/connect/authorize", UriKind.Absolute),
-                            Scopes = new Dictionary<string, string>
-                            {
-                                { _identityConfig.ClientScope, _identityConfig.ClientScope },
-                            }
-                        }
-                    }
-                });
-                
                 options.OperationFilter<AuthorizeCheckOperationFilter>();
 
             });
+           
 
             _bootstrapper
                 .Initialize(services, options =>
@@ -171,8 +92,6 @@ namespace Service
                     //options.AddLogging();
                     //options.AddLocalization();
                 })
-                .WithAuditing()
-                .WithAuthorization<ExampleDbContext>()
                 .WithCqrs(AppDomain.CurrentDomain.GetAssemblies().Where(e => e.FullName.Contains("Business")).ToArray())
                 ;
 
@@ -195,37 +114,44 @@ namespace Service
                 .UseSwaggerUI(options =>
                 {
                     options.SwaggerEndpoint("v1/swagger.json", "My API V1");
-                    options.OAuthClientId(_identityConfig.ClientId);
-                    options.OAuthAppName(_identityConfig.ClientId);
                 });
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseAuthentication();
-
-            app.UseAuthorization();
-            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapFallbackToFile("/index.html");
+                if (env.IsDevelopment())
+                {
+                    endpoints.MapFallbackToFile("/index.html");
+                }
             });
+            UpdateDatabase();
+        }
 
+        private void UpdateDatabase()
+        {
+            if (!_appConfig.MigrationsOnStartup) return;
+            var opts = _container.GetInstance<DbContextOptions<CollegeDbContext>>();
+            var accessor = new HttpContextAccessor { HttpContext = new DefaultHttpContext() };
+            using (var db = new CollegeDbContext(opts, accessor))
+            {
+                db.Database.Migrate();
+                new SeedDataHelper(db).Run();
+            }
         }
 
         private void InitializeContainer()
         {
             _container.Register(
-                () => new DbContextOptionsBuilder<ExampleDbContext>()
-                    .UseSqlServer(Configuration.GetConnectionString("ExampleDbContext")).Options, Lifestyle.Singleton);
-            _container.Register<DbContext, ExampleDbContext>(Lifestyle.Scoped);
-            _container.Register<ExampleDbContext>(Lifestyle.Scoped);
-            _container.Register(() => _emailConfig, Lifestyle.Singleton);
+                () => new DbContextOptionsBuilder<CollegeDbContext>()
+                    .UseSqlServer(Configuration.GetConnectionString("CollegeDbContext"), options => options.EnableRetryOnFailure())
+                    .Options, Lifestyle.Singleton);
+            _container.Register<DbContext, CollegeDbContext>(Lifestyle.Scoped);
+            _container.Register<CollegeDbContext>(Lifestyle.Scoped);
             _container.Register(() => _appConfig, Lifestyle.Singleton);
-            _container.Register<CcgAccountClientConfiguration>(() => _identityConfig, Lifestyle.Singleton);
-            _container.Register<ExampleIdentityConfiguration>(() => _identityConfig, Lifestyle.Singleton);
+            _container.Register<ApplicationConfiguration>(() => _appConfig, Lifestyle.Singleton);
 
         }
 

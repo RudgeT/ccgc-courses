@@ -15,12 +15,12 @@ namespace Business.Commands.Tests.Validation
 {
     public class LocalizedValidation : IDisposable
     {
-        private readonly DbHelper<ExampleDbContext> _dbHelper;
-        private readonly ExampleDbContext _handlerDbContext;
+        private readonly DbHelper<CollegeDbContext> _dbHelper;
+        private readonly CollegeDbContext _handlerDbContext;
 
         public LocalizedValidation()
         {
-            _dbHelper = new DbHelper<ExampleDbContext>().RunMigrations();
+            _dbHelper = new DbHelper<CollegeDbContext>().RunMigrations();
             _handlerDbContext = _dbHelper.GetDbContext();
             ValidatorOptions.Global.LanguageManager = new LocalizedLanguageManager();
         }

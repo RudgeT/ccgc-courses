@@ -4,38 +4,47 @@
 @inject IViewLocalizer Localizer
 
 @{
-    ViewData["Title"] = Localizer["Welcome"];
+    ViewData["Title"] = @Localizer["Home"];
+    var isEnglish = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "en";
 }
 
 
-@section Breadcrumbs {
-
-    <li>@Localizer["Welcome"]</li>
-}
+<nav role="navigation" id="wb-bc" property="breadcrumb">
+    <h2>
+        @Localizer["You are here:"]
+    </h2>
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a class="breadcrumb-item active" aria-current="page">@Localizer["Home"]</a></li>
+        </ol>
+    </div>
+</nav>
 
 <div class="text-center">
-    <h1 class="display-4">@Localizer["Welcome"]</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">@Localizer["Title"]</h1>
 </div>
 
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">Id</th>
-            <th scope="col">Code</th>
-            <th scope="col">Description</th>
+            <th scope="col">@Localizer["Code"]</th>
+            <th scope="col">@Localizer["CourseTitle"]</th>
+            <th scope="col">@Localizer["Description"]</th>
+            <th scope="col">@Localizer["Hours"]</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var classification in Model.Classifications)
-        {
+        @foreach (var course in Model.Courses)
+        { 
         <tr>
-            <td>@classification.Id</td>
-            <td>@classification.Code</td>
-            <td>@classification.DescEng</td>
+            <td>@course.Code</td>
+            <td>@(isEnglish ? course.TitleEng : course.TitleFre)</td>
+            <td>@(isEnglish ? course.DescEng : course.DescFre)</td>
+            <td>@course.Hours</td>
         </tr>
         }
     </tbody>
 </table>
 
-<a asp-page="/Privacy">Privacy</a>
+
+

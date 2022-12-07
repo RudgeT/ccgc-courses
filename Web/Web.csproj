@@ -9,6 +9,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Resources\PageNames.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PageNames.resx</DependentUpon>
+    </Compile>
     <Compile Update="Resources\Pages\Index.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -29,6 +34,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Resources\PageNames.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>PageNames.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Pages\Index.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Index.Designer.cs</LastGenOutput>
@@ -37,6 +46,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>_ThemeGcwu.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\theme\GCWeb\" />
+    <Folder Include="wwwroot\theme\wet-boew\" />
   </ItemGroup>
 
 </Project>
