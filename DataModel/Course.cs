@@ -31,6 +31,15 @@ namespace DataModel
         public string Hours { get; set; }
 
         public int Active { get; set; }
+
+        public int TypeID { get; set; }
+        public CourseType CourseType { get; set; }
+
+        public int DepartmentID { get; set; }
+        public Department Department { get; set; }
+
+        public int DisciplineID { get; set; }
+        public Discipline Discipline { get; set; }
     }
     public class CourseConfiguration :  IEntityTypeConfiguration<Course>
     {

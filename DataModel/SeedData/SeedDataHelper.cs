@@ -16,12 +16,12 @@ namespace DataModel.SeedData
         public async Task Run()
         {
             // base tables
-            await AddIfEmpty(Courses);
-            await AddIfEmpty(Departments);
             await AddIfEmpty(Disciplines);
+            await AddIfEmpty(Departments);
             await AddIfEmpty(CourseTypes);
             await AddIfEmpty(Programs);
             await AddIfEmpty(YearLevels);
+            await AddIfEmpty(Courses);
 
             // link tables
 

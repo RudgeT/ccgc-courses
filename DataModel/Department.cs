@@ -18,6 +18,8 @@ namespace DataModel
         public string NameFre { get; set; }
 
         public int Active { get; set; }
+
+        public List<Course> Courses { get; set; }
     }
     public class DepartmentConfiguration : IEntityTypeConfiguration<Department>
     {

@@ -15,176 +15,231 @@ namespace DataModel.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("ProductVersion", "3.1.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("DataModel.Course", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int")
-                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                b.Property<int>("Active")
-                    .HasColumnType("int");
+                    b.Property<int>("Active")
+                        .HasColumnType("int");
 
-                b.Property<string>("Code")
-                    .HasColumnType("nvarchar(50)")
-                    .HasMaxLength(50);
-                
-                b.Property<string>("TitleEng")
-                    .HasColumnType("nvarchar(1000)")
-                    .HasMaxLength(1000);
+                    b.Property<string>("Code")
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
 
-                b.Property<string>("TitleFre")
-                    .HasColumnType("nvarchar(1000)")
-                    .HasMaxLength(1000);
+                    b.Property<int?>("CourseTypeId")
+                        .HasColumnType("int");
 
-                b.Property<string>("DescEng")
-                    .HasColumnType("nvarchar(4000)")
-                    .HasMaxLength(4000);
+                    b.Property<int>("DepartmentID")
+                        .HasColumnType("int");
 
-                b.Property<string>("DescFre")
-                    .HasColumnType("nvarchar(4000)")
-                    .HasMaxLength(4000);
+                    b.Property<string>("DescEng")
+                        .HasColumnType("varchar(4000)")
+                        .HasMaxLength(4000)
+                        .IsUnicode(false);
 
-                b.Property<string>("LangEng")
-                    .HasColumnType("nvarchar(100)")
-                    .HasMaxLength(100);
+                    b.Property<string>("DescFre")
+                        .HasColumnType("varchar(4000)")
+                        .HasMaxLength(4000)
+                        .IsUnicode(false);
 
-                b.Property<string>("LangFre")
-                    .HasColumnType("nvarchar(100)")
-                    .HasMaxLength(100);
+                    b.Property<int>("DisciplineID")
+                        .HasColumnType("int");
 
-                b.Property<string>("Hours")
-                    .HasColumnType("nvarchar(30)")
-                    .HasMaxLength(30);
+                    b.Property<string>("Hours")
+                        .HasColumnType("varchar(30)")
+                        .HasMaxLength(30)
+                        .IsUnicode(false);
 
-                b.HasKey("Id");
+                    b.Property<string>("LangEng")
+                        .HasColumnType("varchar(100)")
+                        .HasMaxLength(100)
+                        .IsUnicode(false);
 
-                b.ToTable("Courses");
-            });
+                    b.Property<string>("LangFre")
+                        .HasColumnType("varchar(100)")
+                        .HasMaxLength(100)
+                        .IsUnicode(false);
 
-            modelBuilder.Entity("DataModel.Department", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int")
-                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<string>("TitleEng")
+                        .HasColumnType("varchar(1000)")
+                        .HasMaxLength(1000)
+                        .IsUnicode(false);
 
-                b.Property<int>("Active")
-                    .HasColumnType("int");
+                    b.Property<string>("TitleFre")
+                        .HasColumnType("varchar(1000)")
+                        .HasMaxLength(1000)
+                        .IsUnicode(false);
 
-                b.Property<string>("NameEng")
-                    .HasColumnType("nvarchar(1000)")
-                    .HasMaxLength(1000);
+                    b.Property<int>("TypeID")
+                        .HasColumnType("int");
 
-                b.Property<string>("NameFre")
-                    .HasColumnType("nvarchar(1000)")
-                    .HasMaxLength(1000);
+                    b.HasKey("Id");
 
-                b.HasKey("Id");
+                    b.HasIndex("CourseTypeId");
 
-                b.ToTable("Departments");
-            });
+                    b.HasIndex("DepartmentID");
 
-            modelBuilder.Entity("DataModel.Discipline", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int")
-                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.HasIndex("DisciplineID");
 
-                b.Property<int>("Active")
-                    .HasColumnType("int");
-
-                b.Property<string>("NameEng")
-                    .HasColumnType("nvarchar(1000)")
-                    .HasMaxLength(1000);
-
-                b.Property<string>("NameFre")
-                    .HasColumnType("nvarchar(1000)")
-                    .HasMaxLength(1000);
-
-                b.HasKey("Id");
-
-                b.ToTable("Disciplines");
-            });
+                    b.ToTable("Courses");
+                });
 
             modelBuilder.Entity("DataModel.CourseType", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int")
-                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                b.Property<int>("Active")
-                    .HasColumnType("int");
+                    b.Property<int>("Active")
+                        .HasColumnType("int");
 
-                b.Property<string>("NameEng")
-                    .HasColumnType("nvarchar(1000)")
-                    .HasMaxLength(1000);
+                    b.Property<string>("NameEng")
+                        .HasColumnType("varchar(1000)")
+                        .HasMaxLength(1000)
+                        .IsUnicode(false);
 
-                b.Property<string>("NameFre")
-                    .HasColumnType("nvarchar(1000)")
-                    .HasMaxLength(1000);
+                    b.Property<string>("NameFre")
+                        .HasColumnType("varchar(1000)")
+                        .HasMaxLength(1000)
+                        .IsUnicode(false);
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.ToTable("CourseTypes");
-            });
+                    b.ToTable("CourseTypes");
+                });
+
+            modelBuilder.Entity("DataModel.Department", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Active")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NameEng")
+                        .HasColumnType("varchar(1000)")
+                        .HasMaxLength(1000)
+                        .IsUnicode(false);
+
+                    b.Property<string>("NameFre")
+                        .HasColumnType("varchar(1000)")
+                        .HasMaxLength(1000)
+                        .IsUnicode(false);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Departments");
+                });
+
+            modelBuilder.Entity("DataModel.Discipline", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Active")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NameEng")
+                        .HasColumnType("varchar(1000)")
+                        .HasMaxLength(1000)
+                        .IsUnicode(false);
+
+                    b.Property<string>("NameFre")
+                        .HasColumnType("varchar(1000)")
+                        .HasMaxLength(1000)
+                        .IsUnicode(false);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Disciplines");
+                });
 
             modelBuilder.Entity("DataModel.Program", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int")
-                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                b.Property<int>("Active")
-                    .HasColumnType("int");
+                    b.Property<int>("Active")
+                        .HasColumnType("int");
 
-                b.Property<string>("CodeEng")
-                    .HasColumnType("nvarchar(50)")
-                    .HasMaxLength(50);
+                    b.Property<string>("CodeEng")
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
 
-                b.Property<string>("CodeFre")
-                    .HasColumnType("nvarchar(50)")
-                    .HasMaxLength(50);
+                    b.Property<string>("CodeFre")
+                        .HasColumnType("varchar(50)")
+                        .HasMaxLength(50)
+                        .IsUnicode(false);
 
-                b.Property<string>("NameEng")
-                    .HasColumnType("nvarchar(1000)")
-                    .HasMaxLength(1000);
+                    b.Property<string>("NameEng")
+                        .HasColumnType("varchar(1000)")
+                        .HasMaxLength(1000)
+                        .IsUnicode(false);
 
-                b.Property<string>("NameFre")
-                    .HasColumnType("nvarchar(1000)")
-                    .HasMaxLength(1000);
+                    b.Property<string>("NameFre")
+                        .HasColumnType("varchar(1000)")
+                        .HasMaxLength(1000)
+                        .IsUnicode(false);
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.ToTable("Programs");
-            });
+                    b.ToTable("Programs");
+                });
 
             modelBuilder.Entity("DataModel.YearLevel", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd()
-                    .HasColumnType("int")
-                    .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                b.Property<int>("Active")
-                    .HasColumnType("int");
+                    b.Property<int>("Active")
+                        .HasColumnType("int");
 
-                b.Property<string>("LevelValue")
-                    .HasColumnType("nvarchar(50)")
-                    .HasMaxLength(50);
-                
-                b.HasKey("Id");
+                    b.Property<string>("LevelValue")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
 
-                b.ToTable("YearLevels");
-            });
+                    b.HasKey("Id");
 
+                    b.ToTable("YearLevels");
+                });
+
+            modelBuilder.Entity("DataModel.Course", b =>
+                {
+                    b.HasOne("DataModel.CourseType", "CourseType")
+                        .WithMany("Courses")
+                        .HasForeignKey("CourseTypeId");
+
+                    b.HasOne("DataModel.Department", "Department")
+                        .WithMany("Courses")
+                        .HasForeignKey("DepartmentID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataModel.Discipline", "Discipline")
+                        .WithMany("Courses")
+                        .HasForeignKey("DisciplineID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 #pragma warning restore 612, 618
         }
     }

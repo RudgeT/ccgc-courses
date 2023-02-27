@@ -17,7 +17,10 @@ namespace DataModel.SeedData
                     LangEng = "English", 
                     LangFre = "Anglais", 
                     Hours = "15", 
-                    Active = 1 
+                    Active = 1,
+                    TypeID = 2,
+                    DepartmentID = 8,
+                    DisciplineID = 1
                 },
                 new Course 
                 { 
@@ -30,7 +33,10 @@ namespace DataModel.SeedData
                     LangEng = "English", 
                     LangFre = "Anglais",
                     Hours = "22.5", 
-                    Active = 1 
+                    Active = 1,
+                    TypeID = 2,
+                    DepartmentID = 8,
+                    DisciplineID = 1
                 },
                 new Course 
                 { 
@@ -43,7 +49,10 @@ namespace DataModel.SeedData
                     LangEng = "English", 
                     LangFre = "Anglais",
                     Hours = "10",
-                    Active = 1 
+                    Active = 1,
+                    TypeID = 4,
+                    DepartmentID = 7,
+                    DisciplineID = 6
                 },
                 new Course 
                 { 
@@ -56,7 +65,10 @@ namespace DataModel.SeedData
                     LangEng = "English", 
                     LangFre = "Anglais",
                     Hours = "42",
-                    Active = 1 
+                    Active = 1,
+                    TypeID = 4,
+                    DepartmentID = 7,
+                    DisciplineID = 6
                 },
                 new Course 
                 { 
@@ -69,7 +81,10 @@ namespace DataModel.SeedData
                     LangEng = "English", 
                     LangFre = "Anglais",
                     Hours = "144",
-                    Active = 1 
+                    Active = 1,
+                    TypeID = 1,
+                    DepartmentID = 2,
+                    DisciplineID = 3
                 },
                 new Course
                 {
@@ -82,7 +97,10 @@ namespace DataModel.SeedData
                     LangEng = "English", 
                     LangFre = "Anglais",
                     Hours = "48",
-                    Active = 1
+                    Active = 1,
+                    TypeID = 1,
+                    DepartmentID = 2,
+                    DisciplineID = 3
                 },
                 new Course
                 {
@@ -95,7 +113,10 @@ namespace DataModel.SeedData
                     LangEng = "English", 
                     LangFre = "Anglais",
                     Hours = "52",
-                    Active = 1
+                    Active = 1,
+                    TypeID = 6,
+                    DepartmentID = 1,
+                    DisciplineID = 2
                 },
                 new Course
                 {
@@ -108,7 +129,10 @@ namespace DataModel.SeedData
                     LangEng = "English", 
                     LangFre = "Anglais",
                     Hours = "100",
-                    Active = 1
+                    Active = 1,
+                    TypeID = 6,
+                    DepartmentID = 1,
+                    DisciplineID = 2
                 },
                 new Course
                 {
@@ -121,7 +145,10 @@ namespace DataModel.SeedData
                     LangEng = "English", 
                     LangFre = "Anglais",
                     Hours = "5",
-                    Active = 1
+                    Active = 1,
+                    TypeID = 4,
+                    DepartmentID = 6,
+                    DisciplineID = 5
                 },
                 new Course
                 {
@@ -134,7 +161,10 @@ namespace DataModel.SeedData
                     LangEng = "English", 
                     LangFre = "Anglais",
                     Hours = "6",
-                    Active = 1
+                    Active = 1,
+                    TypeID = 4,
+                    DepartmentID = 6,
+                    DisciplineID = 5
                 },
                 new Course
                 {
@@ -147,7 +177,10 @@ namespace DataModel.SeedData
                     LangEng = "English", 
                     LangFre = "Anglais",
                     Hours = "142",
-                    Active = 1
+                    Active = 1,
+                    TypeID = 5,
+                    DepartmentID = 3,
+                    DisciplineID = 1
                 },
                 new Course
                 {
@@ -160,7 +193,10 @@ namespace DataModel.SeedData
                     LangEng = "French", 
                     LangFre = "Français",
                     Hours = "48",
-                    Active = 1
+                    Active = 1,
+                    TypeID = 5,
+                    DepartmentID = 3,
+                    DisciplineID = 2
                 },
                 new Course
                 {
@@ -173,7 +209,10 @@ namespace DataModel.SeedData
                     LangEng = "English", 
                     LangFre = "Anglais",
                     Hours = "20",
-                    Active = 1
+                    Active = 1,
+                    TypeID = 4,
+                    DepartmentID = 5,
+                    DisciplineID = 4
                 },
                 new Course
                 {
@@ -186,7 +225,10 @@ namespace DataModel.SeedData
                     LangEng = "English", 
                     LangFre = "Anglais",
                     Hours = "20",
-                    Active = 1
+                    Active = 1,
+                    TypeID = 4,
+                    DepartmentID = 5,
+                    DisciplineID = 4
                 },
             };
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataModel;
+using System;
 
 namespace Business.Queries.Dtos
 {
@@ -14,5 +15,9 @@ namespace Business.Queries.Dtos
         public string LangFre { get; set; }
         public string Hours { get; set; }
         public int Active { get; set; }
+
+        public int Type { get; set; }
+        public int Department { get; set; }
+        public int Discipline { get; set; }
     }
 }

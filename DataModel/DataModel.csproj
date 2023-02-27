@@ -6,6 +6,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20230227170322_coursetype.cs" />
+    <Compile Remove="Migrations\20230227170322_coursetype.Designer.cs" />
+    <Compile Remove="Migrations\20230227172151_Type.cs" />
+    <Compile Remove="Migrations\20230227172151_Type.Designer.cs" />
+    <Compile Remove="Migrations\20230227172322_CourseT.cs" />
+    <Compile Remove="Migrations\20230227172322_CourseT.Designer.cs" />
+    <Compile Remove="Migrations\20230227173500_CourseTypes.cs" />
+    <Compile Remove="Migrations\20230227173500_CourseTypes.Designer.cs" />
+    <Compile Remove="Migrations\20230227175809_CourseTypes.cs" />
+    <Compile Remove="Migrations\20230227175809_CourseTypes.Designer.cs" />
+    <Compile Remove="Migrations\20230227204737_Departments.cs" />
+    <Compile Remove="Migrations\20230227204737_Departments.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

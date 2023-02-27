@@ -39,7 +39,10 @@ namespace Business.Queries.Courses
                     LangEng = e.LangEng,
                     LangFre = e.LangFre,
                     Hours = e.Hours,
-                    Active = e.Active
+                    Active = e.Active,
+                    Type = e.TypeID,
+                    Department = e.DepartmentID,
+                    Discipline = e.DisciplineID
                 }).SingleOrDefaultAsync(cancellationToken);
         }
     }
