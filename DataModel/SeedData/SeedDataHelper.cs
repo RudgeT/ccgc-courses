@@ -22,6 +22,7 @@ namespace DataModel.SeedData
             await AddIfEmpty(Programs);
             await AddIfEmpty(YearLevels);
             await AddIfEmpty(Courses);
+            await AddIfEmpty(Program_Years);
 
             // link tables
 

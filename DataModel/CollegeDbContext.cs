@@ -30,6 +30,7 @@ namespace DataModel
         public DbSet<CourseType> CourseTypes { get; set; }
         public DbSet<Program> Programs { get; set; }
         public DbSet<YearLevel> YearLevels { get; set; }
+        public DbSet<Program_Year> Program_Years { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

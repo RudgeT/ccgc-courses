@@ -202,6 +202,28 @@ namespace DataModel.Migrations
                     b.ToTable("Programs");
                 });
 
+            modelBuilder.Entity("DataModel.Program_Year", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ProgramID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("YearLevelID")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProgramID");
+
+                    b.HasIndex("YearLevelID");
+
+                    b.ToTable("Program_Years");
+                });
+
             modelBuilder.Entity("DataModel.YearLevel", b =>
                 {
                     b.Property<int>("Id")
@@ -237,6 +259,21 @@ namespace DataModel.Migrations
                     b.HasOne("DataModel.Discipline", "Discipline")
                         .WithMany("Courses")
                         .HasForeignKey("DisciplineID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DataModel.Program_Year", b =>
+                {
+                    b.HasOne("DataModel.Program", "Program")
+                        .WithMany()
+                        .HasForeignKey("ProgramID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataModel.YearLevel", "YearLevel")
+                        .WithMany()
+                        .HasForeignKey("YearLevelID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
