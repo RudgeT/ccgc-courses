@@ -49,6 +49,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Pages\Courses\" />
     <Folder Include="wwwroot\theme\GCWeb\" />
     <Folder Include="wwwroot\theme\wet-boew\" />
   </ItemGroup>

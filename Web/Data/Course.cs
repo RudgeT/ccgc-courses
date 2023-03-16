@@ -12,6 +12,10 @@ namespace Web.Data
         public string DescFre { get; set; }
         public string LangEng { get; set; }
         public string LangFre { get; set; }
-        public string Hours { get; set; }
+        public string Hours { get; set; } 
+
+        public int type { get; set; }
+        public int department { get; set; }
+        public int discipline { get; set; }
     }
 }

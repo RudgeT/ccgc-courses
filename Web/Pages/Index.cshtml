@@ -31,6 +31,9 @@
             <th scope="col">@Localizer["CourseTitle"]</th>
             <th scope="col">@Localizer["Description"]</th>
             <th scope="col">@Localizer["Hours"]</th>
+            <th scope="col">@Localizer["CourseType"]</th>
+            <th scope="col">@Localizer["Department"]</th>
+            <th scope="col">@Localizer["Discipline"]</th>
         </tr>
     </thead>
     <tbody>
@@ -41,6 +44,42 @@
             <td>@(isEnglish ? course.TitleEng : course.TitleFre)</td>
             <td>@(isEnglish ? course.DescEng : course.DescFre)</td>
             <td>@course.Hours</td>
+                @{
+                    if (course.type > 0 && course.type <= Model.CourseTypes.Length)
+                    {
+                        var type = Model.CourseTypes.ElementAt(course.type -1);
+                        <td>@(isEnglish ? type.NameEng : type.NameFre)</td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+
+                    }
+                    @{
+                    if (course.department > 0 && course.department <= Model.Departments.Length)
+                    {
+                        var dept = Model.Departments.ElementAt(course.department -1);
+                        <td>@(isEnglish ? dept.NameEng : dept.NameFre)</td>
+                    }
+                    else
+                    {
+                        <td></td>
+                    }
+                }
+                @{
+                    if (course.discipline > 0 && course.discipline <= Model.Disciplines.Length)
+                    {
+                        var disc = Model.Disciplines.ElementAt(course.discipline - 1);
+                        <td>@(isEnglish ? disc.NameEng : disc.NameFre)</td>
+                    }
+                    else
+                    {
+                        <td></td>                        
+                    }
+                }
+
+            
         </tr>
         }
     </tbody>
