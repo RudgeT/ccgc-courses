@@ -40,7 +40,7 @@
         @foreach (var course in Model.Courses)
         { 
         <tr>
-            <td>@course.Code</td>
+            <td><a asp-page="Courses/Details" asp-route-id="@course.Id">@course.Code</a></td>
             <td>@(isEnglish ? course.TitleEng : course.TitleFre)</td>
             <td>@(isEnglish ? course.DescEng : course.DescFre)</td>
             <td>@course.Hours</td>

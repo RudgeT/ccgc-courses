@@ -21,11 +21,11 @@ namespace Web.Data
             var list = await httpClient.GetJsonAsync<CourseType[]>("/api/coursetypes");
             return list;
         }
-        public async Task<CourseType[]> GetCourseTypeById(int Id)
+        public async Task<CourseType> GetCourseTypeById(int Id)
         {
             string url = $"/api/coursetypes/{Id}";
             using var httpClient = _clientFactory.CreateClient("api");
-            return await httpClient.GetJsonAsync<CourseType[]>(url);
+            return await httpClient.GetJsonAsync<CourseType>(url);
         }
     }
 }

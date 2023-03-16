@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -15,6 +15,8 @@ using Web.Helpers;
 using System.Linq;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.EntityFrameworkCore;
+using Web.Data;
 
 namespace Web
 {
@@ -68,6 +70,9 @@ namespace Web
             {
                 services.AddSingleton(type);
             }
+
+            services.AddDbContext<WebContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("WebContext")));
 
         }
 

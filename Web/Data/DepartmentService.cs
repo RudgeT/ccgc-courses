@@ -21,11 +21,11 @@ namespace Web.Data
             var list = await httpClient.GetJsonAsync<Department[]>("/api/departments");
             return list;
         }
-        public async Task<Department[]> GetDepartmentById(int Id)
+        public async Task<Department> GetDepartmentById(int Id)
         {
             string url = $"/api/departments/{Id}";
             using var httpClient = _clientFactory.CreateClient("api");
-            return await httpClient.GetJsonAsync<Department[]>(url);
+            return await httpClient.GetJsonAsync<Department>(url);
         }
     }
 }

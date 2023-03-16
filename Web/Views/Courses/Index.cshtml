@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Web.Data.Course>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TitleEng)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TitleFre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DescEng)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DescFre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LangEng)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LangFre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hours)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.discipline)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TitleEng)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TitleFre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescEng)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescFre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LangEng)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LangFre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Hours)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.department)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.discipline)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
