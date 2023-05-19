@@ -1,0 +1,35 @@
+﻿@{
+    var isEnglish = System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName == "en";
+}
+@if (isEnglish)
+{
+    <nav class="gcweb-menu wb-init gcweb-menu-inited" typeof="SiteNavigationElement" id="wb-auto-2">
+        <div class="container">
+            <h2 class="wb-inv">Menu</h2>
+            <button type="button" aria-haspopup="true" aria-controls="glb-mn" aria-expanded="false" aria-label="Press the SPACEBAR to expand or the escape key to collapse this menu. Use the Up and Down arrow keys to choose a submenu item. Press the Enter or Right arrow key to expand it, or the Left arrow or Escape key to collapse it. Use the Up and Down arrow keys to choose an item on that level and the Enter key to access it."><span class="wb-inv">Main </span>Menu <span class="expicon glyphicon glyphicon-chevron-down"></span></button>
+            <ul id="glb-mn" role="menu" aria-orientation="vertical" data-ajax-replace="https://www.canada.ca/content/dam/canada/sitemenu/sitemenu-v2-en.html" class="wb-init wb-data-ajax-replace-inited">
+                <li role="presentation"><a role="menuitem" tabindex="0" href="https://www.ccg-gcc.gc.ca/navigation/index-eng.html">Navigation</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.ccg-gcc.gc.ca/fleet-flotte/index-eng.html">Fleet</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.ccg-gcc.gc.ca/college-careers-eng.html">College and careers</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.ccg-gcc.gc.ca/programs-services-eng.html">Programs and services</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.ccg-gcc.gc.ca/contact/emergency-urgence/index-eng.html">Emergency numbers</a></li>
+            </ul>
+        </div>
+    </nav>
+}
+else
+{
+    <nav class="gcweb-menu wb-init gcweb-menu-inited" typeof="SiteNavigationElement" id="wb-auto-2">
+        <div class="container">
+            <h2 class="wb-inv">Menu</h2>
+            <button type="button" aria-haspopup="true" aria-controls="glb-mn" aria-expanded="false" aria-label="Press the SPACEBAR to expand or the escape key to collapse this menu. Use the Up and Down arrow keys to choose a submenu item. Press the Enter or Right arrow key to expand it, or the Left arrow or Escape key to collapse it. Use the Up and Down arrow keys to choose an item on that level and the Enter key to access it."><span class="wb-inv">Main </span>Menu <span class="expicon glyphicon glyphicon-chevron-down"></span></button>
+            <ul id="glb-mn" role="menu" aria-orientation="vertical" data-ajax-replace="https://www.canada.ca/content/dam/canada/sitemenu/sitemenu-v2-en.html" class="wb-init wb-data-ajax-replace-inited">
+                <li role="presentation"><a role="menuitem" tabindex="0" href="https://www.ccg-gcc.gc.ca/navigation/index-fra.html">Navigation</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.ccg-gcc.gc.ca/fleet-flotte/index-fra.html">Flotte</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.ccg-gcc.gc.ca/college-careers-fra.html">Collège et carrières</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.ccg-gcc.gc.ca/programs-services-fra.html">Programmes et services</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="https://www.ccg-gcc.gc.ca/contact/emergency-urgence/index-fra.html">Numéros d’urgence</a></li>
+            </ul>
+        </div>
+    </nav>
+}

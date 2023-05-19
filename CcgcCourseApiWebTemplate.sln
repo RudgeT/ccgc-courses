@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28922.388
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.csproj", "{BD21D8DF-58FA-40D6-8A63-1C7909536C17}"
 EndProject
@@ -29,6 +29,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_", "_", "{B3FBA4E3-085D-4D
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "Web\Web.csproj", "{B9554C17-19ED-42EE-A54A-2F885F68DC6F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin", "Admin\Admin.csproj", "{E0F59C45-5DBD-4206-B7AF-B70D6B45F2D2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -72,6 +74,10 @@ Global
 		{B9554C17-19ED-42EE-A54A-2F885F68DC6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9554C17-19ED-42EE-A54A-2F885F68DC6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9554C17-19ED-42EE-A54A-2F885F68DC6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0F59C45-5DBD-4206-B7AF-B70D6B45F2D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0F59C45-5DBD-4206-B7AF-B70D6B45F2D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0F59C45-5DBD-4206-B7AF-B70D6B45F2D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0F59C45-5DBD-4206-B7AF-B70D6B45F2D2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,59 @@
+﻿@page
+@model Admin.Pages.Courses.IndexModel
+@inject Admin.Data.FormattingService Formatter
+
+@{
+    ViewData["Title"] = "Courses";
+    ViewData["HideBodyOverflow"] = false;
+
+
+    <h1>Courses</h1>
+
+    <table style="width:100%;">
+        <tr>
+            <th>Code</th>
+            <th>Title</th>
+            <th>Hours</th>
+            <th>Type</th>
+            <th>Department</th>
+            <th>Discipline</th>
+        </tr>
+        @foreach (var item in Model.CourseList)
+        {
+
+            <tr>
+                <td><a asp-page="Details" asp-route-id="@item.Id">@item.Code</a></td>
+                <td>@item.TitleEng</td>
+                <td>@item.Hours</td>
+                @if (item.Type > 0 && item.Type < Model.CourseList.Count)
+                {
+                    <td>@Model.CourseList.ElementAt(item.Type-1).TitleEng</td>
+                }
+                else
+                {
+                    <td></td>
+                }
+                @if (item.Department >0 && item.Department < Model.DepartmentList.Count)
+                {
+                    <td>@Model.DepartmentList.ElementAt(item.Department-1).NameEng</td>
+                }
+                else
+                {
+                    <td></td>
+                }
+                @if (item.Discipline > 0 && item.Discipline < Model.DisciplineList.Count)
+                {
+                    <td>@Model.DisciplineList.ElementAt(item.Discipline-1).NameEng</td>
+                }
+                else
+                {
+                    <td></td>
+                }
+            </tr>
+        }
+    </table>
+
+    <div>
+    <a href="/Courses/Create" class="btn btn-primary">Ceate new course</a>
+    </div>
+}

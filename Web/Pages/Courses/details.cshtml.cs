@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Web.Data;
 
-namespace Web.Pages
+namespace Web.Pages.Courses
 {
     public class CourseModel : PageModel
     {

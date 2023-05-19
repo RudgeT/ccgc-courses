@@ -1,0 +1,124 @@
+﻿@page
+@model EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Course</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Course.Id" />
+            <div class="form-group">
+                <label asp-for="Course.Code" class="control-label"></label>
+                <input asp-for="Course.Code" class="form-control" placeholder=""/>
+                <span asp-validation-for="Course.Code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Course.TitleEng" class="control-label"></label>
+                <input asp-for="Course.TitleEng" class="form-control" />
+                <span asp-validation-for="Course.TitleEng" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Course.TitleFre" class="control-label"></label>
+                <input asp-for="Course.TitleFre" class="form-control" />
+                <span asp-validation-for="Course.TitleFre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Course.DescEng" class="control-label"></label>
+                <input asp-for="Course.DescEng" class="form-control" />
+                <span asp-validation-for="Course.DescEng" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Course.DescFre" class="control-label"></label>
+                <input asp-for="Course.DescFre" class="form-control" />
+                <span asp-validation-for="Course.DescFre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Course.LangEng" class="control-label"></label>
+                <input asp-for="Course.LangEng" class="form-control" />
+                <span asp-validation-for="Course.LangEng" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Course.LangFre" class="control-label"></label>
+                <input asp-for="Course.LangFre" class="form-control" />
+                <span asp-validation-for="Course.LangFre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Course.Hours" class="control-label"></label>
+                <input asp-for="Course.Hours" class="form-control" />
+                <span asp-validation-for="Course.Hours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Course.CourseType" class="control-label"></label>
+                <select asp-for="Course.CourseType" class="form-control">
+                    <option value="">None</option>
+                    @foreach (var type in Model.CourseTypes)
+                    {
+                        if(type.Id == Model.Course.TypeID)
+                        {
+                            <option value="@type.Id" selected>@type.NameEng</option>
+                        }
+                        else
+                        {
+                            <option value="@type.Id">@type.NameEng</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="Course.CourseType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                @{int dept_val;}
+                <label asp-for="Course.Department" class="control-label"></label>
+                <select asp-for="Course.Department" class="form-control">
+                    <option value="">None</option>
+                    @foreach (var dept in Model.Departments)
+                    {
+                        if (dept.Id == Model.Course.DepartmentID)
+                        {
+                            <option value="@dept.Id" selected>@dept.NameEng</option>
+                        }
+                        else
+                        {
+                            <option value="@dept.Id">@dept.NameEng</option>
+                        }
+                    }
+                </select>
+                <span asp-validation-for="Course.Department" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Course.Discipline" class="control-label"></label>
+                <select asp-for="Course.Discipline" class="form-control">
+                    <option value="">None</option>
+                    @foreach(var disc in Model.Disciplines)
+                    {
+                        if (disc.Id == Model.Course.DisciplineID)
+                        {
+                            <option value="@disc.Id" selected>@disc.NameEng</option>
+                        }
+                        else
+                        {
+                            <option value="@disc.Id">@disc.NameEng</option>
+                        }
+                    }
+
+                </select>
+                <span asp-validation-for="Course.Discipline" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
