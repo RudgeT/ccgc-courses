@@ -1,11 +1,14 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Admin.Data;
-using Business.Queries.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using DataModel;
+using Admin.Data;
+using Business.Queries.Dtos;
 
 namespace Admin.Pages.Courses
 {
@@ -31,22 +34,22 @@ namespace Admin.Pages.Courses
             _disciplineService = disciplineService;
         }
 
+        [BindProperty(SupportsGet = true)]
+        public string Filter { get; set; }
+
         public bool DisplayTopOfPage { get; set; }
 
-        public double LastTableContainerHeight { get; set; } = 300;
-
+        public double LastTableContainerHeight { get; set; } = 500;
+        public IList<CourseDto> Course { get; set; }
         public IList<CourseDto> CourseList { get; set; }
         public IList<CourseType> CourseTypeList { get; set; }
         public IList<Department> DepartmentList { get; set; }
         
         public IList<Discipline> DisciplineList { get; set;}
 
- 
-        [BindProperty(SupportsGet = true)]
-        public string Filter { get; set; }
-
         public async Task OnGetAsync()
         {
+            Course = await _courseService.GetAllCourses();
             CourseList = await _courseService.GetAllCourses();
             CourseTypeList = await _courseTypeService.GetAllCourseTypes();
             DepartmentList = await _departmentService.GetAllDepartments();
@@ -66,7 +69,7 @@ namespace Admin.Pages.Courses
             {
                 if (double.TryParse(sessionStr, out double num))
                 {
-                    if (num > 300)
+                    if (num > 500)
                     {
                         LastTableContainerHeight = num;
                     }

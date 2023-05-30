@@ -106,20 +106,6 @@ namespace DataModel.Migrations
                    });
         }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "Courses");
-            migrationBuilder.DropTable(
-               name: "Departments");
-            migrationBuilder.DropTable(
-               name: "Disciplines");
-            migrationBuilder.DropTable(
-               name: "CourseTypes");
-            migrationBuilder.DropTable(
-               name: "Programs");
-            migrationBuilder.DropTable(
-               name: "YearLevels");
-        }
+        
     }
 }

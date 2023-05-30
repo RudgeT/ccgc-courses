@@ -1,0 +1,36 @@
+﻿@page
+@model Admin.Pages.Departments.IndexModel
+@inject Admin.Data.FormattingService Formatter
+
+@{
+    ViewData["Title"] = "Departments";
+    ViewData["HideBodyOverflow"] = false;
+}
+<h1>Departments <span class="glyphicon glyphicon-save-file pull-right index-save-file-icon" onclick="print()"></span></h1>
+<p class="space-btns hide-in-print">
+    <a class="btn btn-outline-primary" asp-page="Create">Create New</a>
+</p>
+<div id="table-container" style="max-height: @(Model.LastTableContainerHeight)px; height: @(Model.LastTableContainerHeight)px">
+    <table class="table">
+        <thead>
+            <tr class="table-header-row text-center">
+                <th>Name ENG</th>
+                <th>Name FRE</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var dept in Model.Departs)
+            {
+                <tr>
+                    <td>@dept.NameEng</td>
+                    <td>@dept.NameFre</td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="medium-margin-top">
+    <a href="/Departments/Create" class="btn btn-primary">Ceate new department</a>
+</div>

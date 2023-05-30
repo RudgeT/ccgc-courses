@@ -1,67 +1,64 @@
 ﻿@page
-@model EditModel
-
+@model Admin.Pages.Courses.EditModel
 @{
     ViewData["Title"] = "Edit";
 }
-
 <h1>Edit</h1>
 
 <h4>Course</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            
+    <div class="col-md-10">
+        <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="Course.Id" />
+            <input type="hidden" asp-for="CourseDto.Id" value="@Model.Course.Id" />
             <div class="form-group">
-                <label asp-for="Course.Code" class="control-label"></label>
-                <input asp-for="Course.Code" class="form-control" placeholder=""/>
+                <label asp-for="CourseDto.Code" class="control-label"></label>
+                <input asp-for="CourseDto.Code" class="form-control" value="@Model.Course.Code" />
                 <span asp-validation-for="Course.Code" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Course.TitleEng" class="control-label"></label>
-                <input asp-for="Course.TitleEng" class="form-control" />
-                <span asp-validation-for="Course.TitleEng" class="text-danger"></span>
+                <label asp-for="CourseDto.TitleEng" class="control-label"></label>
+                <input asp-for="CourseDto.TitleEng" class="form-control" value="@Model.Course.TitleEng" />
+                <span asp-validation-for="CourseDto.TitleEng" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Course.TitleFre" class="control-label"></label>
-                <input asp-for="Course.TitleFre" class="form-control" />
-                <span asp-validation-for="Course.TitleFre" class="text-danger"></span>
+                <label asp-for="CourseDto.TitleFre" class="control-label"></label>
+                <input asp-for="CourseDto.TitleFre" class="form-control" value="@Model.Course.TitleFre" />
+                <span asp-validation-for="CourseDto.TitleFre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Course.DescEng" class="control-label"></label>
-                <input asp-for="Course.DescEng" class="form-control" />
+                <label asp-for="CourseDto.DescEng" class="control-label"></label>
+                <input asp-for="CourseDto.DescEng" class="form-control" value="@Model.Course.DescEng" />
                 <span asp-validation-for="Course.DescEng" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Course.DescFre" class="control-label"></label>
-                <input asp-for="Course.DescFre" class="form-control" />
-                <span asp-validation-for="Course.DescFre" class="text-danger"></span>
+                <label asp-for="CourseDto.DescFre" class="control-label"></label>
+                <input asp-for="CourseDto.DescFre" class="form-control" value="@Model.Course.DescFre" />
+                <span asp-validation-for="CourseDto.DescFre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Course.LangEng" class="control-label"></label>
-                <input asp-for="Course.LangEng" class="form-control" />
-                <span asp-validation-for="Course.LangEng" class="text-danger"></span>
+                <label asp-for="CourseDto.LangEng" class="control-label"></label>
+                <input asp-for="CourseDto.LangEng" class="form-control" value="@Model.Course.LangEng" />
+                <span asp-validation-for="CourseDto.LangEng" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Course.LangFre" class="control-label"></label>
-                <input asp-for="Course.LangFre" class="form-control" />
-                <span asp-validation-for="Course.LangFre" class="text-danger"></span>
+                <label asp-for="CourseDto.LangFre" class="control-label"></label>
+                <input asp-for="CourseDto.LangFre" class="form-control" value="@Model.Course.LangFre" />
+                <span asp-validation-for="CourseDto.LangFre" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Course.Hours" class="control-label"></label>
-                <input asp-for="Course.Hours" class="form-control" />
-                <span asp-validation-for="Course.Hours" class="text-danger"></span>
+                <label asp-for="CourseDto.Hours" class="control-label"></label>
+                <input asp-for="CourseDto.Hours" class="form-control" value="@Model.Course.Hours" />
+                <span asp-validation-for="CourseDto.Hours" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Course.CourseType" class="control-label"></label>
-                <select asp-for="Course.CourseType" class="form-control">
+                <label asp-for="CourseDto.Type" class="control-label"></label>
+                <select asp-for="CourseDto.Type" class="form-control">
                     <option value="">None</option>
                     @foreach (var type in Model.CourseTypes)
                     {
-                        if(type.Id == Model.Course.TypeID)
+                        if (type.Id == Model.Course.TypeID)
                         {
                             <option value="@type.Id" selected>@type.NameEng</option>
                         }
@@ -71,12 +68,12 @@
                         }
                     }
                 </select>
-                <span asp-validation-for="Course.CourseType" class="text-danger"></span>
+                <span asp-validation-for="CourseDto.Type" class="text-danger"></span>
             </div>
             <div class="form-group">
                 @{int dept_val;}
-                <label asp-for="Course.Department" class="control-label"></label>
-                <select asp-for="Course.Department" class="form-control">
+                <label asp-for="CourseDto.Department" class="control-label"></label>
+                <select asp-for="CourseDto.Department" class="form-control">
                     <option value="">None</option>
                     @foreach (var dept in Model.Departments)
                     {
@@ -90,13 +87,13 @@
                         }
                     }
                 </select>
-                <span asp-validation-for="Course.Department" class="text-danger"></span>
+                <span asp-validation-for="CourseDto.Department" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Course.Discipline" class="control-label"></label>
-                <select asp-for="Course.Discipline" class="form-control">
+                <label asp-for="CourseDto.Discipline" class="control-label"></label>
+                <select asp-for="CourseDto.Discipline" class="form-control">
                     <option value="">None</option>
-                    @foreach(var disc in Model.Disciplines)
+                    @foreach (var disc in Model.Disciplines)
                     {
                         if (disc.Id == Model.Course.DisciplineID)
                         {
@@ -109,16 +106,14 @@
                     }
 
                 </select>
-                <span asp-validation-for="Course.Discipline" class="text-danger"></span>
+                <span asp-validation-for="CourseDto.Discipline" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group col-10-md">
                 <input type="submit" value="Save" class="btn btn-primary" />
+                <a href="./">Back to List</a> | <a href="Delete?id=@Model.Course.Id">Delete this course</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 

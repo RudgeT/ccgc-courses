@@ -117,25 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Code" xml:space="preserve">
-    <value>Code</value>
+  <data name="Back" xml:space="preserve">
+    <value>Précédent</value>
   </data>
-  <data name="CourseTitle" xml:space="preserve">
-    <value>Titre de cours</value>
+  <data name="Course code:" xml:space="preserve">
+    <value>Code de cours :</value>
   </data>
-  <data name="Departments" xml:space="preserve">
-    <value>Département</value>
+  <data name="Course type:" xml:space="preserve">
+    <value>Type de cours :</value>
   </data>
-  <data name="Description" xml:space="preserve">
-    <value>Description</value>
+  <data name="Department:" xml:space="preserve">
+    <value>Département :</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Accueil</value>
   </data>
-  <data name="Hours" xml:space="preserve">
-    <value>Heures</value>
+  <data name="Hours:" xml:space="preserve">
+    <value>Heures :</value>
   </data>
-  <data name="Title" xml:space="preserve">
-    <value>Catalogue des cours du Collège de la Garde côtière canadienne</value>
+  <data name="Language:" xml:space="preserve">
+    <value>Langue :</value>
   </data>
 </root>

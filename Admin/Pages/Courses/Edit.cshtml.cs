@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Admin.Data;
+using Microsoft.Extensions.Logging;
 using Audit.Core.ConfigurationApi;
 using DataModel;
 using Business.Queries.Dtos;
@@ -63,8 +64,11 @@ namespace Admin.Pages.Courses
         public async Task<IActionResult> OnPostAsync(int id)
         {
             await _courseService.UpdateCourse(CourseDto);
-
-            return RedirectToPage("Details", new { id });
+            Course = await _context.Courses.FindAsync(id);
+            CourseTypes = await _courseTypeService.GetAllCourseTypes();
+            Departments = await _departmentService.GetAllDepartments();
+            Disciplines = await _disciplineService.GetAllDisciplines();
+            return RedirectToPage("Index");
         }
     }
 }

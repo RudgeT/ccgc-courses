@@ -22,7 +22,7 @@ for details on configuring this project to bundle and minify static web assets. 
     scroll-margin: 20px;
 }
 
-/* Sticky footer style VVVVV --------------------------------------------------------------------------------------------- */
+/* Sticky footer */
 
 html {
     font-size: 14px;
@@ -56,9 +56,8 @@ body {
     z-index: 1000;
 }
 
-/* Sticky footer style ^^^^^ --------------------------------------------------------------------------------------------- */
 
-/* Scrollbar style VVVVV ------------------------------------------------------------------------------------------------- */
+/* Scrollbar */
 
 ::-webkit-scrollbar {
     width: 8px;
@@ -75,9 +74,9 @@ body {
     border-radius: 8px;
 }
 
-/* Scrollbar style ^^^^^ ------------------------------------------------------------------------------------------------- */
+/* Scrollbar */
 
-/* Modal windows style VVVVV --------------------------------------------------------------------------------------------- */
+/* Modal windows */
 
 .modal-footer {
     padding-right: 0px !important;
@@ -101,9 +100,9 @@ body {
         margin-right: 0px !important;
     }
 
-/* Modal windows style ^^^^^ --------------------------------------------------------------------------------------------- */
+/* Modal windows */
 
-/* All Position Details style VVVVV --------------------------------------------------------------------------------------- */
+/* All Courses Details */
 
 .apd-comp-grid {
     margin: 0px;
@@ -269,9 +268,8 @@ body {
         top: 2px;
     }
 
-/* All Position Details style ^^^^^ --------------------------------------------------------------------------------------- */
 
-/* Competencies dropdown style VVVVV ------------------------------------------------------------------------------------- */
+/* Courses dropdown  */
     
 .dropdown-content {
     position: absolute;
@@ -301,7 +299,7 @@ body {
             padding-top: 3px;
         }
 
-#navCompetencies:hover .dropdown-content, #navCompetencies.hovered .dropdown-content {
+#navCourses:hover .dropdown-content, #navCourses.hovered .dropdown-content {
     opacity: 1;
     top: 65px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -335,9 +333,8 @@ body {
     z-index: 10000;
 }
 
-/* Competencies dropdown style ^^^^^ ------------------------------------------------------------------------------------- */
 
-/* Navigation bar style VVVVV -------------------------------------------------------------------------------------------- */
+/* Navigation bar */
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: #fff;
@@ -424,9 +421,8 @@ a.navbar-brand {
     opacity: 1 !important;
 }
 
-/* Navigation bar style ^^^^^ -------------------------------------------------------------------------------------------- */
 
-/* Utility classes style VVVVV ------------------------------------------------------------------------------------------- */
+/* Utility classes */
 
 .small-padding-top {
     padding-top: 5px;
@@ -625,9 +621,8 @@ a.navbar-brand {
     overflow: hidden !important;
 }
 
-/* Utility classes style ^^^^^ ------------------------------------------------------------------------------------------- */
 
-/* Specific styles VVVVV ------------------------------------------------------------------------------------------------- */
+/* Specific styles */
 
 a {
     color: var(--linkColour);

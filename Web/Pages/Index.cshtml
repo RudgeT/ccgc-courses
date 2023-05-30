@@ -1,4 +1,4 @@
-﻿@page ""
+﻿@page 
 @model IndexModel
 
 @inject IViewLocalizer Localizer
@@ -29,7 +29,6 @@
         <tr>
             <th scope="col">@Localizer["Code"]</th>
             <th scope="col">@Localizer["CourseTitle"]</th>
-            <th scope="col">@Localizer["Description"]</th>
             <th scope="col">@Localizer["Hours"]</th>
             <th scope="col">@Localizer["CourseType"]</th>
             <th scope="col">@Localizer["Department"]</th>
@@ -42,7 +41,6 @@
         <tr>
             <td><a asp-page="Courses/Details" asp-route-id="@course.Id">@course.Code</a></td>
             <td>@(isEnglish ? course.TitleEng : course.TitleFre)</td>
-            <td>@(isEnglish ? course.DescEng : course.DescFre)</td>
             <td>@course.Hours</td>
                 @{
                     if (course.type > 0 && course.type <= Model.CourseTypes.Length)

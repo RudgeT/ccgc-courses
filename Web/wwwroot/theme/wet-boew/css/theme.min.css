@@ -5281,8 +5281,8 @@ tbody.collapse.in {
         .pager li > a, .pager li > span {
             display: inline-block;
             padding: 5px 14px;
-            background-color: #eaebed;
-            border: 1px solid #dcdee1;
+            background-color: #26374a;
+            border: 1px solid #213e59;
             border-radius: 4px
         }
 

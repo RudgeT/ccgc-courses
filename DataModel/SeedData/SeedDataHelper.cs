@@ -16,16 +16,20 @@ namespace DataModel.SeedData
         public async Task Run()
         {
             // base tables
-            await AddIfEmpty(Disciplines);
-            await AddIfEmpty(Departments);
+            
             await AddIfEmpty(CourseTypes);
+            await AddIfEmpty(Departments);
+            await AddIfEmpty(Disciplines);
             await AddIfEmpty(Programs);
             await AddIfEmpty(YearLevels);
+
+            // link tables
             await AddIfEmpty(Courses);
             await AddIfEmpty(Program_Years);
 
-            // link tables
-
+            
+            
+            
         }
 
         private async Task AddIfEmpty<TModel>(List<TModel> models, bool hasIdentityKey = true) where TModel : class

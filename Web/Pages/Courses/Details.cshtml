@@ -9,29 +9,21 @@
     ViewData["Title"] = isEnglish ? course.TitleEng : course.TitleFre;
 }
 
-<a href="/"><h4>@Localizer["Home"]</h4></a>
+<a href="../../Index"><h4>@Localizer["Home"]</h4></a>
 <div>
     <h2>@(isEnglish ? course.TitleEng : course.TitleFre)</h2>
-    <span><strong>@Localizer["Course code:"]</strong>@(course.Code)</span>
-    <span><strong>@Localizer["Hours:"]</strong>@(course.Hours)</span>
-    <table>
-        <tr>
-            <th>Language</th>
-            <th>Course Type</th>
-            <th>Department</th>
-            <th>Discipline</th>
-        </tr>
-        <tr>
-            <td>@(course.LangEng)</td>
-            <td>@(Model.CourseType.NameEng)</td>
-            <td>@(Model.Department.NameEng)</td>
-            <td>@(Model.Discipline.NameEng)</td>
-        </tr>
-    </table>
+    <p><b>@Localizer["Course code:"]</b> @(course.Code)</p>
+    <p><b>@Localizer["Course type:"]</b> @(isEnglish ? Model.CourseType.NameEng : Model.CourseType.NameFre)</p>
+    <p><b>@Localizer["Department:"]</b> @(isEnglish ? Model.Department.NameEng : Model.Department.NameFre)</p>
+    
     <hr />
     <p>@(isEnglish ? course.DescEng : course.DescFre)</p>
+    <p><strong>@Localizer["Language:"]</strong> @(isEnglish ? course.LangEng : course.LangFre)</p>
+    <p><strong>@Localizer["Hours:"]</strong> @(course.Hours)</p>
 
 </div>
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <ul class="pager">
+        <li class="previous"><a asp-page="../Index" class="btn btn-primary" type="button" rel="prev">@Localizer["Back"]</a></li>
+    </ul>
 </div>
