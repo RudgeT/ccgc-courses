@@ -5,12 +5,12 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using DataModel;
 using System.Diagnostics;
+using DataModel;
 
 namespace Admin.Data
 {
-    public class CourseService
+    public class CourseService : IDataService
     {
         private readonly IHttpClientFactory _clientFactory;
 

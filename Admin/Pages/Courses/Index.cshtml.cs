@@ -36,7 +36,6 @@ namespace Admin.Pages.Courses
 
         [BindProperty(SupportsGet = true)]
         public string Filter { get; set; }
-
         public bool DisplayTopOfPage { get; set; }
 
         public double LastTableContainerHeight { get; set; } = 500;

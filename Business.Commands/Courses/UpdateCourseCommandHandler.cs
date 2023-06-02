@@ -23,6 +23,9 @@ namespace Business.Commands.Courses
         public string LangFre { get; set; }
         public string Hours { get; set; }
         public int Active { get; set; }
+        public int TypeID { get; set; }
+        public int DepartmentID { get; set; }
+        public int DisciplineID { get; set; }
     }
 
     public class UpdateCourseCommandValidator : AbstractCommandValidator<UpdateCourseCommandHandler>
@@ -58,6 +61,15 @@ namespace Business.Commands.Courses
             RuleFor(e => e.Hours)
                 .MaximumLength(30);
 
+            RuleFor(e => e.TypeID)
+                .NotEmpty();
+
+            RuleFor(e => e.DepartmentID)
+                .NotEmpty();
+
+            RuleFor(e => e.DisciplineID)
+                .NotEmpty();
+
         }
     }
     public class CourseCommandHandler : ICommandHandler<UpdateCourseCommandHandler>
@@ -80,6 +92,11 @@ namespace Business.Commands.Courses
             course.LangEng = string.IsNullOrEmpty(command.LangEng) ? string.Empty : command.LangEng;
             course.LangFre = string.IsNullOrEmpty(command.LangFre) ? string.Empty : command.LangFre;
             course.Hours = string.IsNullOrEmpty(command.Hours) ? string.Empty : command.Hours;
+
+            course.TypeID = command.TypeID;
+            course.DepartmentID = command.DepartmentID;
+            course.DisciplineID = command.DisciplineID;
+
             await _db.SaveChangesAsync(cancellationToken);
         }
 

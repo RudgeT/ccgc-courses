@@ -17,6 +17,10 @@ namespace Business.Commands.Courses
         public string LangEng { get; set; }
         public string LangFre { get; set; }
         public string Hours { get; set; }
+
+        public int TypeID { get; set; }
+        public int DepartmentID { get; set; }
+        public int DisciplineID { get; set; }
     }
 
     public class AddCourseCommandHandler : IQueryHandler<AddCourseCommand, int>
@@ -41,7 +45,10 @@ namespace Business.Commands.Courses
                 LangEng = command.LangEng,
                 LangFre = command.LangFre,
                 Hours = command.Hours,
-                Active = 1
+                Active = 1,
+                TypeID = command.TypeID,
+                DepartmentID = command.DepartmentID,
+                DisciplineID = command.DisciplineID
             };
             await _db.Courses.AddAsync(newCourse, cancellationToken);
             await _db.SaveChangesAsync(cancellationToken);
